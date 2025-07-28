@@ -4,78 +4,198 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- font awesome -> while using icons  -->
+    <title>Enhanced Spreadsheet</title>
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Menu Bar -->
     <div class="menu_bar">
- 
-        <!-- select  -->
+        <!-- File Operations -->
+        <div class="new_open_save_container">
+            <button class="menu-btn" id="newBtn" title="New">
+                <i class="fas fa-file"></i>
+                <span>New</span>
+            </button>
+            <button class="menu-btn" id="openBtn" title="Open">
+                <i class="fas fa-folder-open"></i>
+                <span>Open</span>
+            </button>
+            <button class="menu-btn" id="saveBtn" title="Save">
+                <i class="fas fa-save"></i>
+                <span>Save</span>
+            </button>
+        </div>
+
+        <!-- Formatting Controls -->
         <div class="formatting-container">
-            <select class="font_family_input">
-                <option value="'Courier New'">Courier New</option>
-                <option value="'Franklin Gothic Medium'">Franklin Gothic Medium</option>
-                <option value="'Trebuchet MS'">Trebuchet MS</option>
-                <option value="Georgia">Georgia</option>
+            <select class="font_family_input" title="Font Family">
+                <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Segoe UI</option>
+                <option value="'Courier New', monospace">Courier New</option>
+                <option value="'Franklin Gothic Medium', Arial, sans-serif">Franklin Gothic Medium</option>
+                <option value="'Trebuchet MS', Helvetica, sans-serif">Trebuchet MS</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="'Times New Roman', Times, serif">Times New Roman</option>
             </select>
-            <select class="font_size_input">
-                <option value="14">14</option>
+            <select class="font_size_input" title="Font Size">
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="14" selected>14</option>
+                <option value="16">16</option>
                 <option value="18">18</option>
                 <option value="20">20</option>
                 <option value="24">24</option>
+                <option value="28">28</option>
+                <option value="32">32</option>
             </select>
         </div>
+
+        <!-- Bold, Underline, Italic -->
         <div class="bui_container">
-            <i class="fas fa-bold"></i>
-            <i class="fas fa-underline"></i>
-            <i class="fas fa-italic"></i>
+            <button class="format-btn" id="boldBtn" title="Bold">
+                <i class="fas fa-bold"></i>
+            </button>
+            <button class="format-btn" id="underlineBtn" title="Underline">
+                <i class="fas fa-underline"></i>
+            </button>
+            <button class="format-btn" id="italicBtn" title="Italic">
+                <i class="fas fa-italic"></i>
+            </button>
         </div>
-        <!-- bold italic underline  -->
-        <!-- colors-->
+
+        <!-- Alignment -->
         <div class="alignment_container">
-            <i class="fas fa-align-right right"></i>
-            <i class="fas fa-align-center center"></i>
-            <i class="fas fa-align-justify justify"></i>
-            <i class="fas fa-align-left left"></i>
+            <button class="align-btn left-align selected" data-align="left" title="Align Left">
+                <i class="fas fa-align-left"></i>
+            </button>
+            <button class="align-btn center-align" data-align="center" title="Align Center">
+                <i class="fas fa-align-center"></i>
+            </button>
+            <button class="align-btn right-align" data-align="right" title="Align Right">
+                <i class="fas fa-align-right"></i>
+            </button>
+            <button class="align-btn justify-align" data-align="justify" title="Justify">
+                <i class="fas fa-align-justify"></i>
+            </button>
         </div>
-        <!-- alignment -->
+
+        <!-- Colors -->
         <div class="color-container">
-            <i class="fas fa-tint"></i>
-            <i class="fas fa-fill-drip"></i>
-            <input type="color" class="text_color" style="display: none">
-            <input type="color" class="background_color" style="display:none">
+            <button class="color-btn" id="textColorBtn" title="Text Color">
+                <i class="fas fa-font"></i>
+                <div class="color-indicator" id="textColorIndicator"></div>
+            </button>
+            <button class="color-btn" id="bgColorBtn" title="Background Color">
+                <i class="fas fa-fill-drip"></i>
+                <div class="color-indicator" id="bgColorIndicator"></div>
+            </button>
+            <input type="color" class="text_color" id="textColorPicker" value="#000000">
+            <input type="color" class="background_color" id="bgColorPicker" value="#ffffff">
+        </div>
+
+        <!-- Additional Tools -->
+        <div class="tools_container">
+            <button class="tool-btn" id="undoBtn" title="Undo">
+                <i class="fas fa-undo"></i>
+            </button>
+            <button class="tool-btn" id="redoBtn" title="Redo">
+                <i class="fas fa-redo"></i>
+            </button>
+            <button class="tool-btn" id="deleteBtn" title="Delete">
+                <i class="fas fa-trash"></i>
+            </button>
         </div>
     </div>
+
+    <!-- Formula Bar -->
     <div class="formula_bar">
-        <input type="text" class="address_input" disabled>
-        <img src="pngwing.com.png" alt="">
-        <input type="text" class="formula_input" placeholder="formula">
+        <input type="text" class="address_input" value="A1" readonly>
+        <div class="formula_icon">
+            <i class="fas fa-function"></i>
+        </div>
+        <input type="text" class="formula_input" placeholder="Enter formula or value">
     </div>
+
+    <!-- Grid Container -->
     <div class="grid_container">
-        <div class="top_left_cell">
-        </div>
+        <div class="top_left_cell"></div>
+        
         <div class="top_row">
-            <!-- static -->
+            <!-- Column headers will be generated by JavaScript -->
         </div>
+        
         <div class="left_col">
+            <!-- Row numbers will be generated by JavaScript -->
         </div>
+        
         <div class="grid">
-            <!-- 2d grid build  -->
+            <!-- Grid cells will be generated by JavaScript -->
         </div>
     </div>
+
+    <!-- Sheets Container -->
     <div class="sheets_container">
-        <div class="add-sheet_container">
+        <div class="add-sheet_container" title="Add new sheet">
             <i class="fas fa-plus icon"></i>
         </div>
         <div class="sheets-list">
-            <div class="sheet active-sheet" sheetIdx="0"> Sheet 1</div>
+            <div class="sheet active-sheet" data-sheet-idx="0">
+                <span class="sheet-name">Sheet 1</span>
+                <button class="sheet-close" title="Close sheet">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
         </div>
     </div>
+
+    <!-- Context Menu -->
+    <div class="context-menu" id="contextMenu">
+        <div class="context-item" data-action="cut">
+            <i class="fas fa-cut"></i>
+            <span>Cut</span>
+        </div>
+        <div class="context-item" data-action="copy">
+            <i class="fas fa-copy"></i>
+            <span>Copy</span>
+        </div>
+        <div class="context-item" data-action="paste">
+            <i class="fas fa-paste"></i>
+            <span>Paste</span>
+        </div>
+        <div class="context-divider"></div>
+        <div class="context-item" data-action="insert-row">
+            <i class="fas fa-plus"></i>
+            <span>Insert Row</span>
+        </div>
+        <div class="context-item" data-action="insert-column">
+            <i class="fas fa-plus"></i>
+            <span>Insert Column</span>
+        </div>
+        <div class="context-divider"></div>
+        <div class="context-item" data-action="delete-row">
+            <i class="fas fa-minus"></i>
+            <span>Delete Row</span>
+        </div>
+        <div class="context-item" data-action="delete-column">
+            <i class="fas fa-minus"></i>
+            <span>Delete Column</span>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="init.js"></script>
     <script src="menu.js"></script>
     <script src="formula.js"></script>
+    <script src="enhanced.js"></script>
 </body>
 </html>
